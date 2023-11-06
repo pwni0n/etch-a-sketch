@@ -17,15 +17,7 @@ function randomVal() {
     return Math.floor(Math.random() * 255) + 1
 }
 
-function newGrid() {
-    gridSquares = Math.floor(Number.parseFloat(prompt("How many squares? (1-100)", 16))) || 16;
-    gridSquares > 100 ? gridSquares = 100 : gridSquares = gridSquares;
-    gridSquares < 1 ? gridSquares = 1 : gridSquares = gridSquares;
-
-    for (let element of document.querySelectorAll(".grid-container > div")) {
-        element.remove();
-    }
-
+function buildGrid() {
     for (let i = 0; i < gridSquares; i++) {
         for (let j = 0; j < gridSquares; j++) {
             const gridItem = document.createElement("div");
@@ -48,4 +40,18 @@ function newGrid() {
     }
 }
 
-newGrid();
+function newGrid() {
+    gridSquares = prompt("How many squares? (1-100)", 16);
+    if (gridSquares === null) return;
+    gridSquares = Math.floor(Number.parseFloat(gridSquares));
+    gridSquares > 100 ? gridSquares = 100 : gridSquares = gridSquares;
+    gridSquares < 1 ? gridSquares = 1 : gridSquares = gridSquares;
+
+    for (let element of document.querySelectorAll(".grid-container > div")) {
+        element.remove();
+    }
+
+    buildGrid();
+}
+
+buildGrid();
