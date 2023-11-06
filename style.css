@@ -1,6 +1,11 @@
 .grid-container {
-    height: 512px;
-    width: 512px;
+    height: 700px;
+    width: 700px;
     display: flex;
     flex-wrap: wrap;
+    margin: auto;
+}
+
+.grid-container > div {
+    box-sizing: border-box;
 }
