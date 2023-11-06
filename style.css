@@ -4,7 +4,9 @@ button {
 }
 
 .btn-holder {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 32px;
     margin: 10px;
 }
 
