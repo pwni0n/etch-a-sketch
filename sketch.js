@@ -1,9 +1,17 @@
 const gridContainer = document.querySelector(".grid-container");
-const button = document.querySelector("button");
+const newGridBtn = document.querySelector(".new-grid");
+const colorGridBtn = document.querySelector(".color-grid");
 const GRID_PIXEL_SIZE = 700;
 let gridSquares = 16;
 
-button.addEventListener("click", newGrid);
+newGridBtn.addEventListener("click", e => {
+    gridContainer.classList.remove("color");
+    newGrid();
+});
+colorGridBtn.addEventListener("click", e => {
+    gridContainer.classList.add("color");
+    newGrid();
+});
 
 function randomVal() {
     return Math.floor(Math.random() * 255) + 1
@@ -31,7 +39,7 @@ function newGrid() {
             gridContainer.appendChild(gridItem);
     
             gridItem.addEventListener("mouseenter", e => {
-                e.target.parentElement.classList.contains("party")
+                gridContainer.classList.contains("color")
                 ? e.target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB}, ${transparency / 10})`
                 : e.target.style.backgroundColor = `rgb(0, 0, 0, ${transparency / 10})`;
                 transparency++;
