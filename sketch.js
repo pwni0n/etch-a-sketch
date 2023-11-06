@@ -3,7 +3,11 @@ const button = document.querySelector("button");
 const GRID_PIXEL_SIZE = 700;
 let gridSquares = 16;
 
-button.addEventListener("click", newGrid)
+button.addEventListener("click", newGrid);
+
+function randomVal() {
+    return Math.floor(Math.random() * 255) + 1
+}
 
 function newGrid() {
     gridSquares = Math.floor(Number.parseFloat(prompt("How many squares? (1-100)", 16))) || 16;
@@ -17,13 +21,21 @@ function newGrid() {
     for (let i = 0; i < gridSquares; i++) {
         for (let j = 0; j < gridSquares; j++) {
             const gridItem = document.createElement("div");
+            const randomR = randomVal();
+            const randomG = randomVal();
+            const randomB = randomVal();
+            let transparency = 1;
+
             gridItem.style.height = `${GRID_PIXEL_SIZE / gridSquares}px`;
             gridItem.style.width = `${GRID_PIXEL_SIZE / gridSquares}px`;
             gridContainer.appendChild(gridItem);
     
             gridItem.addEventListener("mouseenter", e => {
-                e.target.style.backgroundColor = "black";
-            })
+                e.target.parentElement.classList.contains("party")
+                ? e.target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB}, ${transparency / 10})`
+                : e.target.style.backgroundColor = `rgb(0, 0, 0, ${transparency / 10})`;
+                transparency++;
+            });
         }
     }
 }
