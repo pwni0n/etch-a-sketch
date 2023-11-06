@@ -7,5 +7,9 @@ for (let i = 0; i < 16; i++) {
         gridItem.style.width = "30px";
         gridItem.style.border = "1px solid black"
         gridContainer.appendChild(gridItem);
+
+        gridItem.addEventListener("mouseenter", e => {
+            e.target.style.backgroundColor = "black";
+        })
     }
 }
